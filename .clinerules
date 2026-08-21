@@ -1,0 +1,12 @@
+# Reglas Estrictas de Desarrollo
+1. **Preservación del Código:** Está terminantemente PROHIBIDO modificar o alterar el código funcional o existente a menos que se solicite explícitamente.
+2. **Adaptación a HTMX y Django:** Todo el código debe adaptarse a HTMX y dejarse completamente preparado y estructurado para que funcione a futuro con una API de Django.
+3. **Respeto al Diseño Actual:** No puedes alterar el diseño de la web. Debes usar estrictamente la plantilla de diseño general para cada una de las plantillas o vistas que se generen.
+4. **Prolijidad y Responsividad:** Todas las plantillas deben ser completamente responsivas (adaptables a celulares y pantallas grandes) y el código debe ser prolijo, limpio y ordenado.
+5. **Navegación Funcional:** Asegúrate de que el menú de navegación (Nav) funcione de manera correcta, fluida y sin errores en todas las plantillas de la web.
+
+6. **Comportamiento Senior:**
+-Debes dejar el sistema lo mas profesional posible
+-No inventes datos ficticios, crea descripciones basandote en datos reales
+-utiliza fuentes mas llamativas y atractivas a la vista del lector
+-Necesitamos cuidar la vista de nuestra gente, asi que implementa un modo nocturno sin romper el menu hamburguesa y que venga activado por defecto

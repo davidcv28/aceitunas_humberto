@@ -1,0 +1,226 @@
+/* ============================================================
+   DON HUMBERTO · css/app.css
+   Estilos de marca, modo nocturno (activado por defecto) y
+   utilidades visuales. Compatible con Tailwind + HTMX/Django.
+   ============================================================ */
+
+/* ---------- Tema: variables CSS ---------- */
+:root {
+    color-scheme: light dark;
+    --fondo: #f8f1e4;
+    --panel: #ffffff;
+    --panel-suave: rgba(255, 255, 255, 0.72);
+    --card: #ffffff;
+    --texto: #1d2f14;
+    --texto-suave: #425f30;
+    --texto-acento: #5a3813;
+    --borde: #efe5d0;
+    --img-panel: #f5f1e8;
+    --nav-bg: rgba(248, 244, 234, 0.92);
+    --hover: #e6efd8;
+    --enlace-activo: #334d26;
+}
+
+/* ---------- Tema NOCTURNO (por defecto) ---------- */
+html[data-theme="oscuro"] {
+    color-scheme: dark;
+    --fondo: #0d130b;
+    --panel: #182210;
+    --panel-suave: rgba(24, 34, 16, 0.78);
+    --card: #1b2613;
+    --texto: #eef3e4;
+    --texto-suave: #cfe0b8;
+    --texto-acento: #d9b45c;
+    --borde: #33463a;
+    --img-panel: #2c3a1f;
+    --nav-bg: rgba(11, 17, 9, 0.92);
+    --hover: #26381c;
+    --enlace-activo: #d9b45c;
+}
+
+/* ---------- Base ---------- */
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background-color: var(--fondo);
+    color: var(--texto);
+    transition: background-color 0.35s ease, color 0.35s ease;
+}
+html[data-theme="oscuro"] body.bg-crema-100 {
+    background-color: var(--fondo);
+    color: var(--texto);
+}
+
+/* ---------- Tipografía ---------- */
+.font-display {
+    font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+    letter-spacing: 0.01em;
+}
+h1, h2, h3, h4 {
+    text-wrap: balance;
+}
+
+/* ---------- Botón de tema ---------- */
+#boton-tema .icono-sol, #boton-tema-movil .icono-sol { display: none; }
+#boton-tema .icono-luna, #boton-tema-movil .icono-luna { display: block; }
+html[data-theme="claro"] #boton-tema .icono-luna,
+html[data-theme="claro"] #boton-tema-movil .icono-luna { display: none; }
+html[data-theme="claro"] #boton-tema .icono-sol,
+html[data-theme="claro"] #boton-tema-movil .icono-sol { display: block; }
+
+/* ---------- Scrollbar sutil ---------- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(126, 163, 95, 0.5); border-radius: 999px; }
+html[data-theme="oscuro"] ::-webkit-scrollbar-thumb { background: rgba(126, 163, 95, 0.35); }
+/* ---------- Navbar ---------- */
+html[data-theme="oscuro"] #nav-principal {
+    background-color: var(--nav-bg);
+    border-color: var(--borde);
+}
+html[data-theme="oscuro"] #nav-principal .text-oliva-800 {
+    color: #dbe9c8;
+}
+html[data-theme="oscuro"] #nav-principal .text-tierra-500 {
+    color: #d9b45c;
+}
+
+/* Enlace de navegación (escritorio) */
+.nav-link {
+    position: relative;
+    font-weight: 500;
+    color: var(--texto);
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.35rem;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #c19a3f, #d9b45c);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link.is-active::after {
+    transform: scaleX(1);
+}
+.nav-link:hover {
+    background-color: var(--hover);
+}
+html[data-theme="oscuro"] .nav-link:hover,
+html[data-theme="oscuro"] #nav-principal .hover\:bg-oliva-100:hover {
+    background-color: var(--hover);
+}
+.nav-link.is-active {
+    color: var(--enlace-activo);
+    font-weight: 600;
+}
+
+/* Items del menú móvil */
+.menu-item {
+    transform: translateX(0);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.menu-item:hover {
+    transform: translateX(4px);
+}
+
+/* ---------- Tarjetas y paneles en tema oscuro ---------- */
+html[data-theme="oscuro"] .bg-white {
+    background-color: var(--card);
+}
+html[data-theme="oscuro"] .bg-white\/70,
+html[data-theme="oscuro"] .bg-white\/85 {
+    background-color: var(--panel-suave);
+}
+html[data-theme="oscuro"] .ring-crema-200\/60,
+html[data-theme="oscuro"] .ring-crema-200\/50,
+html[data-theme="oscuro"] .ring-crema-200\/70 {
+    border-color: var(--borde);
+}
+html[data-theme="oscuro"] .shadow-card {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35), 0 12px 40px rgba(0, 0, 0, 0.28);
+}
+
+/* Texto sobre paneles en tema oscuro */
+html[data-theme="oscuro"] .text-oliva-950 { color: #eef3e4; }
+html[data-theme="oscuro"] .text-oliva-900 { color: #e6efd8; }
+html[data-theme="oscuro"] .text-oliva-800 { color: #cfe0b8; }
+html[data-theme="oscuro"] .text-oliva-700 { color: #b6c99a; }
+html[data-theme="oscuro"] .text-oliva-600 { color: #a0b784; }
+html[data-theme="oscuro"] .text-oliva-500 { color: #7ea35f; }
+
+/* Chips y fondos oliva claros → versiones oscuras */
+html[data-theme="oscuro"] .bg-oliva-100 { background-color: #22301c; }
+html[data-theme="oscuro"] .bg-oliva-50\/60 { background-color: rgba(23, 34, 17, 0.7); }
+html[data-theme="oscuro"] .bg-oliva-50\/95 { background-color: var(--nav-bg); }
+
+/* Degradados de tarjetas en oscuro */
+html[data-theme="oscuro"] .from-oliva-50 { --tw-gradient-from: #16220f; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(22, 34, 15, 0.1)); }
+html[data-theme="oscuro"] .via-white { --tw-gradient-stops: var(--tw-gradient-from), #1b2613, var(--tw-gradient-to, rgba(255,255,255,0)); }
+html[data-theme="oscuro"] .to-oliva-100 { --tw-gradient-to: #1b2613; }
+html[data-theme="oscuro"] .from-tierra-400\/15,
+html[data-theme="oscuro"] .from-oro-400\/10 {
+    --tw-gradient-from: rgba(217, 180, 92, 0.14);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255,255,255,0));
+}
+
+/* ---------- Paneles de foto (imágenes al 100 %) ---------- */
+.foto-panel {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: var(--img-panel);
+    border-radius: 1rem;
+    width: 100%;
+}
+.foto-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.45s ease;
+}
+
+html[data-theme="oscuro"] .foto-panel {
+    background: #2c3a1f;
+}
+
+/* ---------- Arte de olivo (decorativo hero) ---------- */
+.art-oliva-art {
+    background-image:
+        radial-gradient(circle at 12% 18%, rgba(217, 180, 92, 0.16) 0, rgba(217, 180, 92, 0) 34%),
+        radial-gradient(circle at 88% 70%, rgba(126, 163, 95, 0.20) 0, rgba(126, 163, 95, 0) 36%),
+        radial-gradient(circle at 70% 12%, rgba(217, 180, 92, 0.10) 0, rgba(217, 180, 92, 0) 30%);
+    background-size: 240px 240px;
+    pointer-events: none;
+}
+
+/* ---------- Animación de aparición (data-reveal) ---------- */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] { opacity: 1; transform: none; transition: none; }
+    * { animation: none !important; }
+}
+
+/* ---------- Refuerzo de piezas oscuras ---------- */
+html[data-theme="oscuro"] .bg-oliva-950 { background-color: #0a1008; }
+html[data-theme="oscuro"] .bg-oliva-800 { background-color: #15210e; }
+html[data-theme="oscuro"] footer a,
+html[data-theme="oscuro"] footer p {
+    color: inherit;
+}
